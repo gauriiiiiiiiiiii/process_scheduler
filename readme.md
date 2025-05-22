@@ -43,9 +43,9 @@ Choose from:
 ---
 
 # 🔗 **Live Demo**  
-**[Launch the Simulator Here](#https://gauriiiiiiiiiiii.github.io/process_scheduler/)**   
+**[Launch the Simulator Here](https://gauriiiiiiiiiiii.github.io/process_scheduler/)**   
 
 ---
 
 # 💖 **Credits**  
-Made with ❤️ by **Gauri**  
+Made with ❤️ by **Gauri**
