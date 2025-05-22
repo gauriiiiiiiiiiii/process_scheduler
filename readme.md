@@ -1,4 +1,4 @@
-# 🚀 **CPU Process Scheduler Simulator** �  
+# 🚀 **CPU Process Scheduler Simulator**   
 
 Welcome to the **CPU Process Scheduler Simulator**! This interactive tool brings the complex world of operating system process scheduling to life in a visually engaging and intuitive way. Ever wondered how your computer juggles multiple tasks? Dive in and see for yourself!  
 
@@ -43,7 +43,7 @@ Choose from:
 ---
 
 # 🔗 **Live Demo**  
-**[Launch the Simulator Here](#)** *(replace with link)*  
+**[Launch the Simulator Here](#https://gauriiiiiiiiiiii.github.io/process_scheduler/)**   
 
 ---
 
