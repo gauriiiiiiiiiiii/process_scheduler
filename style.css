@@ -1,0 +1,504 @@
+/* CSS Variables for a dark theme */
+        :root {
+            --bg-color: #1a1a2e; /* Dark background */
+            --card-bg: #2b2e4a; /* Slightly lighter card background */
+            --text-color: #e0e0e0; /* Light grey text */
+            --primary-color: #e94560; /* Vibrant red/pink for accents */
+            --secondary-color: #533483; /* Purple for secondary accents */
+            --border-color: #4a4a6b; /* Border color */
+            --input-bg: #3a3f5f; /* Input field background */
+            --button-hover-bg: #c93550; /* Button hover color */
+            --gantt-bg-stripe1: #2f324d; /* Gantt chart stripe 1 */
+            --gantt-bg-stripe2: #343755; /* Gantt chart stripe 2 */
+            --gantt-border: #5a5d7c; /* Gantt chart border */
+            --gradient-start: #1a1a2e;
+            --gradient-end: #0f1120;
+
+            /* New variables for dynamic effects */
+            --glass-bg: rgba(43, 46, 74, 0.6); /* Semi-transparent background for glass effect */
+            --glass-border: rgba(255, 255, 255, 0.1); /* Subtle light border for glass effect */
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Shadow for glass effect */
+        }
+
+        /* Keyframe for background gradient animation */
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Keyframe for Gantt stripe animation */
+        @keyframes stripe-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 20px; } /* Move by one stripe pattern unit */
+        }
+
+        /* Base styles for body */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); /* Subtle gradient background */
+            background-size: 200% 200%; /* Larger background for animation */
+            animation: gradient-shift 15s ease infinite; /* Apply gradient animation */
+            color: var(--text-color);
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        /* Container for main sections */
+        .container {
+            background: var(--glass-bg); /* Glassmorphism background */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            border-radius: 15px;
+            box-shadow: var(--glass-shadow); /* Glassmorphism shadow */
+            padding: 25px;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid var(--glass-border); /* Subtle light border */
+        }
+
+        /* New wrapper for main content sections (inputs + results) */
+        .main-content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        /* Styling for input controls and results sections */
+        .input-controls-section,
+        .results-section {
+            flex: 1;
+            min-width: 320px;
+            box-sizing: border-box;
+        }
+
+        /* Headings */
+        h1, h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(233, 69, 96, 0.5); /* Stronger text glow */
+        }
+
+        /* Sections for input and metrics */
+        .input-section {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .input-section:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .metrics-section {
+            margin-top: 25px;
+        }
+
+        /* Form group for labels and inputs */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .form-group input[type="number"],
+        .form-group select {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .form-group input[type="number"]:focus,
+        .form-group select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 5px rgba(233, 69, 96, 0.5); /* Even stronger glow */
+            background-color: #4a4f70;
+        }
+
+        .form-group select option {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        /* Grid for process input cards */
+        .process-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        /* Individual process input card */
+        .process-card {
+            background: var(--glass-bg); /* Glassmorphism background */
+            backdrop-filter: blur(8px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Smooth hover effect */
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px) scale(1.02); /* More pronounced lift and slight scale */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5); /* Deeper shadow on hover */
+            background: rgba(43, 46, 74, 0.8); /* Slightly less transparent on hover */
+        }
+
+        .process-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Compact form groups within process cards */
+        .process-card .form-group {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .process-card .form-group label {
+            margin-bottom: 0;
+            flex-shrink: 0;
+            width: 100px;
+            text-align: left;
+        }
+
+        .process-card .form-group input[type="number"] {
+            flex-grow: 1;
+            max-width: 100px;
+            text-align: right;
+        }
+
+        /* Container for action buttons */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        /* Styled buttons */
+        .btn {
+            background: linear-gradient(45deg, var(--primary-color), #ff6f8a); /* Gradient button */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1); /* More complex cubic-bezier for smoother feel */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            position: relative; /* For pseudo-elements or subtle effects */
+            overflow: hidden; /* Hide overflow for hover effects */
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #c93550, #e05f78); /* Darker gradient on hover */
+            transform: translateY(-5px) scale(1.02); /* More pronounced lift and scale */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Even deeper shadow */
+        }
+
+        .btn:active {
+            transform: translateY(0) scale(0.98); /* Press down effect with slight shrink */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.1s ease-out; /* Faster transition for active state */
+        }
+
+        .btn i {
+            font-size: 1.1em;
+        }
+
+        /* Custom Alert System */
+        #custom-alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.4s ease-in-out; /* Added transform transition */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        #custom-alert.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0); /* Slide in from slightly above */
+        }
+
+        #custom-alert i {
+            font-size: 1.3em;
+        }
+
+        /* Gantt Chart Styling */
+        .gantt-chart-container {
+            background: var(--glass-bg); /* Glassmorphism background */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 0;
+            overflow-x: auto;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 900px; /* Adjust as needed */
+        }
+
+        .gantt-chart {
+            display: flex;
+            flex-direction: column;
+            min-width: fit-content;
+        }
+
+        .gantt-chart-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+            position: relative;
+        }
+
+        .gantt-label {
+            width: 45px;
+            flex-shrink: 0;
+            font-weight: 600;
+            color: var(--text-color);
+            text-align: right;
+            padding-right: 8px;
+            font-size: 0.9em;
+        }
+
+        .gantt-bars {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            min-height: 28px;
+            position: relative;
+            /* Dynamic striped background */
+            background-image: repeating-linear-gradient(
+                45deg,
+                var(--gantt-bg-stripe1) 0px,
+                var(--gantt-bg-stripe1) 10px,
+                var(--gantt-bg-stripe2) 10px,
+                var(--gantt-bg-stripe2) 20px
+            );
+            background-size: 20px 20px;
+            animation: stripe-move 30s linear infinite; /* Apply stripe animation */
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .gantt-bar {
+            position: absolute;
+            height: 22px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8em;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            border: 1px solid rgba(0,0,0,0.2);
+
+            /* Animation properties */
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+
+        .gantt-bar.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .gantt-bar:hover {
+            opacity: 0.9;
+            transform: scale(1.01);
+            z-index: 1;
+        }
+
+        .gantt-time-axis {
+            display: flex;
+            position: relative;
+            margin-left: 45px;
+            margin-top: 8px;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 4px;
+        }
+
+        .gantt-time-unit {
+            position: absolute;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            color: var(--text-color);
+        }
+
+        .gantt-time-unit.major-tick {
+            font-weight: 600;
+        }
+
+        /* Performance Metrics Display */
+        .metrics-display {
+            background: var(--glass-bg); /* Glassmorphism background */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid var(--glass-border);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+            box-shadow: var(--glass-shadow);
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 700px; /* Adjust as needed */
+        }
+
+        .metric-item {
+            background-color: rgba(43, 46, 74, 0.7); /* Slightly more opaque for readability */
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(83, 52, 131, 0.5); /* Softer secondary border */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .metric-item:hover {
+            transform: translateY(-3px); /* More pronounced lift */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            background-color: rgba(43, 46, 74, 0.9); /* More opaque on hover */
+        }
+
+        .metric-item strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 6px;
+            color: var(--primary-color);
+        }
+
+        .metric-item span {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        /* Media Queries for responsiveness */
+        @media (min-width: 992px) {
+            .input-controls-section {
+                flex: 2;
+            }
+            .results-section {
+                flex: 3;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .main-content-wrapper {
+                flex-direction: column;
+            }
+            .input-controls-section,
+            .results-section {
+                flex: none;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .process-inputs {
+                grid-template-columns: 1fr;
+            }
+            .buttons-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .metrics-display {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            .form-group label, .form-group input, .form-group select {
+                font-size: 0.85rem;
+                padding: 8px 10px;
+            }
+            .process-card h3 {
+                font-size: 1rem;
+            }
+            .process-card .form-group label {
+                width: 80px;
+            }
+            .metric-item strong {
+                font-size: 0.9rem;
+            }
+            .metric-item span {
+                font-size: 1.3rem;
+            }
+            .btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }

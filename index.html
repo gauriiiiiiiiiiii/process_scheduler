@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Process Scheduler Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="custom-alert" class="alert-hidden">
+        <i class="fas fa-info-circle"></i>
+        <span id="alert-message"></span>
+    </div>
+
+    <div class="container">
+        <h1>CPU Process Scheduler Simulator</h1>
+
+        <div class="main-content-wrapper">
+            <div class="input-controls-section">
+                <div class="input-section">
+                    <div class="form-group">
+                        <label for="numProcesses">Number of Processes (1-15):</label>
+                        <input type="number" id="numProcesses" min="1" max="15" value="3">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="algorithmSelect">Select Algorithm:</label>
+                        <select id="algorithmSelect">
+                            <option value="FCFS">FCFS (First-Come, First-Served)</option>
+                            <option value="SJF_non_preemptive">SJF (Non-Preemptive)</option>
+                            <option value="SRTF">SRTF (Preemptive SJF)</option>
+                            <option value="Priority_non_preemptive">Priority (Non-Preemptive)</option>
+                            <option value="Priority_preemptive">Priority (Preemptive)</option>
+                            <option value="RR">Round Robin (RR)</option>
+                            <option value="LJF_non_preemptive">LJF (Non-Preemptive)</option>
+                            <option value="LRTF">LRTF (Preemptive LJF)</option>
+                            <option value="HRRN">HRRN (Highest Response Ratio Next)</option>
+                            <option value="MLFQ">MLFQ (Multilevel Feedback Queue)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="quantumGroup" style="display: none;">
+                        <label for="quantum">Time Quantum (ms):</label>
+                        <input type="number" id="quantum" min="1" value="2">
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h2>Process Details</h2>
+                    <div id="processInputs" class="process-inputs">
+                        </div>
+                </div>
+
+                <div class="buttons-container">
+                    <button class="btn" id="simulateBtn"><i class="fas fa-play"></i> Simulate</button>
+                    <button class="btn" id="resetBtn"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <div class="gantt-chart-container">
+                    <h2>Gantt Chart</h2>
+                    <div id="ganttChart" class="gantt-chart">
+                        </div>
+                    <div id="ganttTimeAxis" class="gantt-time-axis"></div>
+                </div>
+
+                <div class="metrics-section">
+                    <h2>Performance Metrics</h2>
+                    <div class="metrics-display">
+                        <div class="metric-item">
+                            <strong>Average Waiting Time</strong>
+                            <span id="avgWaitingTime">0.00 ms</span>
+                        </div>
+                        <div class="metric-item">
+                            <strong>Average Turnaround Time</strong>
+                            <span id="avgTurnaroundTime">0.00 ms</span>
+                        </div>
+                        <div class="metric-item">
+                            <strong>Average Response Time</strong>
+                            <span id="avgResponseTime">0.00 ms</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
